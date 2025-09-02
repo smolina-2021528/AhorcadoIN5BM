@@ -9,6 +9,11 @@ function seleccionarPalabra() {
   return palabras[p];
 }
 
+//  si una letra es valida desde la a hasta la z incluyendo la Ñ por eso se pone A-ZÑ
+function esLetraValida(ch) {
+  return /^[A-ZÑ]$/.test(ch);
+}
+
 // funcion que dibuja el tablero
 function mostrarTablero() {
   const tablero = document.getElementById("tablero");
@@ -22,7 +27,33 @@ function iniciarJuego() {
   document.getElementById("ahorcado-img").src = "Image/error0.png";
   document.getElementById("mensaje").textContent = "";
   mostrarTablero();
+  
+  // verificar las letras en el juego
+  const letra = document.getElementById("letra");
+  const btn = document.getElementById("btnProbar");
+  letra.value = "";
+  letra.focus();
+  
+  // al darle clic prueba la letra
+  btn.onclick = jugar;
+  //si se usa la tecla enter se acepta la letra tambien
+  letra.onkeydown = (e) => {
+    if (e.key === "Enter") jugar();
+  };
 }
+
+// funcion para jugar
+function jugar() {
+  const letra = document.getElementById("letra");
+  const letraV = (letra.value || "").toUpperCase().trim();
+  letra.value = "";
+  letra.focus();
+
+  if (!esLetraValida(letraV)) {
+    document.getElementById("mensaje").textContent = "Ingresa una letra válida (A-Z/Ñ).";
+    return;
+  }
+
 
 //cargar el juego
 window.addEventListener("load", iniciarJuego);

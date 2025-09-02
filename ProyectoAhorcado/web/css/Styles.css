@@ -12,3 +12,17 @@ body {
 #ahorcado-container img { width: 220px; margin: 20px 0; }
 #tablero { font-size: 28px; letter-spacing: 8px; margin: 18px 0; }
 #mensaje { font-weight: bold; margin-top: 16px; min-height: 24px; }
+
+#input-container { margin-top: 14px; }
+#letra {
+  width: 46px;
+  font-size: 22px;
+  text-align: center;
+  padding: 4px;
+}
+#input-container button {
+  font-size: 16px;
+  padding: 6px 12px;
+  margin-left: 6px;
+  cursor: pointer;
+}

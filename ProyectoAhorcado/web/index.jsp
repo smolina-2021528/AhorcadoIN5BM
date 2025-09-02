@@ -11,7 +11,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Ahorcado</title>
-        <link rel="stylesheet" href="Css/Styles.css">
+        <link rel="stylesheet" href="css/Styles.css">
     </head>
     <body>
         <h1>Juego del Ahorcado</h1>
@@ -21,6 +21,13 @@
         </div>
 
         <div id="tablero"></div>
+
+        <div id="input-container">
+            <input type="text" id="letra" maxlength="1" placeholder="Ingresa una letra">
+            <button id="btnProbar" type="button">Probar</button>
+        </div>
+
+        <p id="mensaje"></p>
 
         <p id="mensaje"></p>
 

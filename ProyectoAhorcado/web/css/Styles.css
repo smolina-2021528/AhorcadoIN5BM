@@ -4,32 +4,98 @@
 */
 
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 30px 12px;
-  background: #f4f4f4;
-}
-#ahorcado-container img { width: 220px; margin: 20px 0; }
-#tablero { font-size: 28px; letter-spacing: 8px; margin: 18px 0; }
-#mensaje { font-weight: bold; margin-top: 16px; min-height: 24px; }
-
-#input-container { margin-top: 14px; }
-#letra {
-  width: 46px;
-  font-size: 22px;
-  text-align: center;
-  padding: 4px;
-}
-#input-container button {
-  font-size: 16px;
-  padding: 6px 12px;
-  margin-left: 6px;
-  cursor: pointer;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 20px;
 }
 
-#letras-usadas {
-  margin-top: 12px;
-  font-size: 14px;
-  min-height: 20px;
-  opacity: 0.9;
+h1 {
+    color: #333;
 }
+
+.contenedor-img {
+    margin: 20px 0;
+}
+
+#ahorcado-img {
+    width: 200px;
+    height: auto;
+}
+
+.tablero {
+    font-size: 32px;
+    letter-spacing: 10px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.mensaje {
+    font-size: 18px;
+    margin: 15px 0;
+    min-height: 24px;
+    color: #444;
+}
+
+.teclado {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 8px;
+}
+
+.tecla {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background-color: #fff;
+    transition: all 0.2s ease;
+}
+
+.tecla:hover:enabled {
+    background-color: #ddd;
+}
+
+.tecla:disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+    color: #999;
+}
+
+.acierto {
+    background-color: #4CAF50 !important;
+    color: white;
+    border: none;
+}
+
+.fallo {
+    background-color: #E53935 !important;
+    color: white;
+    border: none;
+}
+
+.reinicio {
+    margin-top: 25px;
+}
+
+.reinicio button {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.reinicio button:hover {
+    background-color: #1976D2;
+}
+

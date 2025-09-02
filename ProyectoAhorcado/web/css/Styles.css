@@ -26,3 +26,10 @@ body {
   margin-left: 6px;
   cursor: pointer;
 }
+
+#letras-usadas {
+  margin-top: 12px;
+  font-size: 14px;
+  min-height: 20px;
+  opacity: 0.9;
+}

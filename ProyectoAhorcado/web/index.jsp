@@ -26,7 +26,8 @@
             <input type="text" id="letra" maxlength="1" placeholder="Ingresa una letra">
             <button id="btnProbar" type="button">Probar</button>
         </div>
-
+        <div id="letras-usadas"></div>
+        
         <p id="mensaje"></p>
 
         <p id="mensaje"></p>

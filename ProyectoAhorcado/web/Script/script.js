@@ -2,114 +2,115 @@
 const palabras = ["carretera", "computadora", "bicicleta", "elefantes", "zanahoria"];
 let palabraSecreta = "";
 let tablero = [];
-let intentos = 0;               
-const maxIntentos = 6;          
-const letrasUsadas = new Set(); 
+let intentos = 0;
+const maxIntentos = 6;
+const letrasUsadas = new Set();
 
 // funcion que agarra una palabra random
 function seleccionarPalabra() {
-  const p = Math.floor(Math.random() * palabras.length);
-  return palabras[p];
+    const p = Math.floor(Math.random() * palabras.length);
+    return palabras[p];
 }
 
 // si una letra es valida desde la a hasta la z incluyendo la Ñ por eso se pone A-ZÑ
 function esLetraValida(ch) {
-  return /^[A-ZÑ]$/.test(ch);
+    return /^[A-ZÑ]$/.test(ch);
 }
 
 // funcion que dibuja el tablero
 function mostrarTablero() {
-  const tableroElemento = document.getElementById("tablero");
-  tableroElemento.textContent = tablero.join(" ");
+    const tableroElemento = document.getElementById("tablero");
+    tableroElemento.textContent = tablero.join(" ");
 }
 
 // funcion para que empezemos a jugar
 function iniciarJuego() {
-  palabraSecreta = seleccionarPalabra().toUpperCase();
-  tablero = Array(palabraSecreta.length).fill("_");
-  intentos = 0;
-  letrasUsadas.clear();
+    palabraSecreta = seleccionarPalabra().toUpperCase();
+    tablero = Array(palabraSecreta.length).fill("_");
+    intentos = 0;
+    letrasUsadas.clear();
 
-  document.getElementById("ahorcado-img").src = "Image/error0.png";
-  document.getElementById("mensaje").textContent = "";
-  mostrarTablero();
-  crearTeclado();
+    document.getElementById("ahorcado-img").src = "Image/error0.png";
+    document.getElementById("mensaje").textContent = "";
+    mostrarTablero();
+    crearTeclado();
 }
 
 // funcion para actualizar el tablero con una letra
 function actualizarTableroCon(letra) {
-  let aciertos = 0;
-  for (let i = 0; i < palabraSecreta.length; i++) {
-    if (palabraSecreta[i] === letra && tablero[i] === "_") {
-      tablero[i] = letra;
-      aciertos++;
+    let aciertos = 0;
+    for (let i = 0; i < palabraSecreta.length; i++) {
+        if (palabraSecreta[i] === letra && tablero[i] === "_") {
+            tablero[i] = letra;
+            aciertos++;
+        }
     }
-  }
-  mostrarTablero();
-  return aciertos;
+    mostrarTablero();
+    return aciertos;
 }
 
 // funcion para actualizar la imagen del ahorcado según intentos
 function actualizarImagen() {
-  const n = Math.min(intentos, maxIntentos);
-  document.getElementById("ahorcado-img").src = `Image/error${n}.png`;
+    const n = Math.min(intentos, maxIntentos);
+    document.getElementById("ahorcado-img").src = `Image/error${n}.png`;
 }
 
 // funcion que deshabilita todas las teclas al terminar
 function deshabilitarTeclado() {
-  const teclas = document.querySelectorAll(".tecla");
-  teclas.forEach(boton => boton.disabled = true);
+    const teclas = document.querySelectorAll(".tecla");
+    teclas.forEach(boton => boton.disabled = true);
 }
 
 // funcion que verifica si ganaste o perdiste
 function verificarFinJuego() {
-  if (!tablero.includes("_")) {
-    document.getElementById("mensaje").textContent = "🎉 ¡Ganaste!";
-    deshabilitarTeclado();
-    return true;
-  }
-  if (intentos >= maxIntentos) {
-    document.getElementById("mensaje").textContent = `💀 Perdiste. La palabra era: ${palabraSecreta}`;
-    deshabilitarTeclado();
-    return true;
-  }
-  return false;
+    if (!tablero.includes("_")) {
+        document.getElementById("mensaje").textContent = " ¡Ganaste!";
+        deshabilitarTeclado();
+        return true;
+    }
+    if (intentos >= maxIntentos) {
+        document.getElementById("mensaje").textContent = `Perdiste. La palabra era: ${palabraSecreta}`;
+        deshabilitarTeclado();
+        return true;
+    }
+    return false;
 }
 
 // funcion para crear el teclado virtual
 function crearTeclado() {
-  const letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
-  const contenedor = document.getElementById("teclado");
-  contenedor.innerHTML = "";
+    const letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
+    const contenedor = document.getElementById("teclado");
+    contenedor.innerHTML = "";
 
-  letras.forEach(l => {
-    const boton = document.createElement("button");
-    boton.textContent = l;
-    boton.className = "tecla";
-    boton.onclick = () => jugar(l, boton); // al hacer clic juega
-    contenedor.appendChild(boton);
-  });
+    letras.forEach(l => {
+        const boton = document.createElement("button");
+        boton.textContent = l;
+        boton.className = "tecla";
+        boton.onclick = () => jugar(l, boton);
+        contenedor.appendChild(boton);
+    });
 }
 
 // funcion para jugar
 function jugar(letra, boton) {
-  if (letrasUsadas.has(letra)) return; // ya usada
-  letrasUsadas.add(letra);
+    if (letrasUsadas.has(letra))
+        return;
+    letrasUsadas.add(letra);
 
-  if (palabraSecreta.includes(letra)) {
-    actualizarTableroCon(letra);
-    boton.classList.add("acierto"); // verde si es correcta
-    boton.disabled = true;
-    document.getElementById("mensaje").textContent = `¡Bien! La letra ${letra} está.`;
-  } else {
-    intentos++;
-    actualizarImagen();
-    boton.classList.add("fallo"); // rojo si es incorrecta
-    boton.disabled = true;
-    document.getElementById("mensaje").textContent = `Fallaste con ${letra}. Intentos: ${intentos}/${maxIntentos}`;
-  }
+    if (palabraSecreta.includes(letra)) {
+        actualizarTableroCon(letra);
+        boton.classList.add("acierto");
+        boton.disabled = true;
+        document.getElementById("mensaje").textContent = `¡Bien! La letra ${letra} está.`;
+    } else {
+        intentos++;
+        actualizarImagen();
+        boton.classList.add("fallo");
+        boton.disabled = true;
+        document.getElementById("mensaje").textContent = `Fallaste con ${letra}. Intentos: ${intentos}/${maxIntentos}`;
+    }
 
-  verificarFinJuego();
+    verificarFinJuego();
 }
 
 // cargar el juego

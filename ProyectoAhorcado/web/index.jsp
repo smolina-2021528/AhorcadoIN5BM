@@ -24,6 +24,6 @@
 
         <p id="mensaje"></p>
 
-        <script src="script.js"></script>
+        <script src="Script/script.js"></script>
     </body>
 </html>

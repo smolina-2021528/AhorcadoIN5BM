@@ -17,7 +17,7 @@
         <h1>Juego del Ahorcado</h1>
 
         <div id="ahorcado-container">
-            <img id="ahorcado-img" src="Image/error1.png" alt="Ahorcado">
+            <img id="ahorcado-img" src="Image/error0.png" alt="Ahorcado">
         </div>
 
         <div id="tablero"></div>

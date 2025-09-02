@@ -11,7 +11,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Ahorcado</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="Css/Styles.css">
     </head>
     <body>
         <h1>Juego del Ahorcado</h1>

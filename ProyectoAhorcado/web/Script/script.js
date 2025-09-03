@@ -46,7 +46,7 @@ function actualizarTableroCon(letra) {
 
 // funcion para actualizar la imagen del ahorcado según intentos
 function actualizarImagen() {
-    const n = Math.min(intentos, maxIntentos);
+    const n = intentos;
     document.getElementById("ahorcado-img").src = `Image/error${n}.png`;
 }
 

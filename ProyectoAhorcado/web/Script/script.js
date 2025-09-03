@@ -12,11 +12,6 @@ function seleccionarPalabra() {
     return palabras[p];
 }
 
-// si una letra es valida desde la a hasta la z incluyendo la Ñ por eso se pone A-ZÑ
-function esLetraValida(ch) {
-    return /^[A-ZÑ]$/.test(ch);
-}
-
 // funcion que dibuja el tablero
 function mostrarTablero() {
     const tableroElemento = document.getElementById("tablero");

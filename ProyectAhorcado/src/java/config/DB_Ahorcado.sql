@@ -26,9 +26,9 @@ Delimiter $$
 	end$$
 Delimiter ;
 
-call sp_AgregarUsuario("joaquin gonzales", "jocaco7852$");
-call sp_AgregarUsuario("diego mendez", "diegoLuhe980");
-call sp_AgregarUsuario("pablo santa cruz", "sdjfjf4141");
+call sp_AgregarUsuario("joaquingonzales", "jocaco7852$");
+call sp_AgregarUsuario("diegomendez", "diegoLuhe980");
+call sp_AgregarUsuario("pablosanta cruz", "sdjfjf4141");
 
 Delimiter $$
 	Create procedure sp_AgregarPalabra (

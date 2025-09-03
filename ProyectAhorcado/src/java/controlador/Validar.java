@@ -3,9 +3,7 @@ package controlador;
 import config.Conexion;
 import modelo.Usuario;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -43,7 +41,7 @@ public class Validar extends HttpServlet {
     private Usuario validarUsuario(String nombre, String contraseña) {
         Usuario usuario = null;
         String sql = "SELECT * FROM Usuarios WHERE nombreUsuario=? AND contraseñaUsuario=?";
-        try (Connection con = Conexion.Conexion();
+        try (Connection con = new Conexion().Conexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, nombre);

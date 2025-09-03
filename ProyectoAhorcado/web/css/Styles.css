@@ -18,6 +18,25 @@ h1 {
   margin-top: 20px;
   text-align: center;
   color: #003366;
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+
+.btnReiniciar {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  background: #4da6ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.btnReiniciar:hover {
+  background: #3399ff;
+  transform: scale(1.05);
 }
 
 .contenedor-juego {

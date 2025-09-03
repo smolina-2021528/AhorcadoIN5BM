@@ -6,29 +6,29 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Juego del Ahorcado</title>
-        <link rel="stylesheet" href="css/Styles.css">
-    </head>
-    <body>
-        <h1>Juego del Ahorcado</h1>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego del Ahorcado</title>
+    <link rel="stylesheet" href="css/Styles.css">
+</head>
+<body>
+    <h1>Juego del Ahorcado</h1>
 
-        <div class="contenedor-img">
-            <img id="ahorcado-img" src="Image/error0.png" alt="Ahorcado">
-        </div>
+    <div class="contenedor-img">
+        <img id="ahorcado-img" src="Image/error0.png" alt="Ahorcado">
+    </div>
 
-        <div id="tablero" class="tablero"></div>
+    <div id="tablero" class="tablero"></div>
 
-        <div id="mensaje" class="mensaje"></div>
+    <div id="mensaje" class="mensaje"></div>
 
-        <div id="teclado" class="teclado"></div>
+    <div id="teclado" class="teclado"></div>
 
-        <div class="reinicio">
-            <button onclick="iniciarJuego()"> Reiniciar Juego</button>
-        </div>
+    <div class="reinicio">
+        <button onclick="iniciarJuego()" class="btnReiniciar">Reiniciar Juego</button>
+    </div>
 
-        <script src="Script/script.js"></script>
-    </body>
+    <script src="Script/script.js"></script>
+</body>
 </html>

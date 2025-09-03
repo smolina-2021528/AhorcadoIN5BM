@@ -136,3 +136,6 @@ function jugar(letra, boton) {
 
 // cargar el juego
 window.addEventListener("load", iniciarJuego);
+
+
+

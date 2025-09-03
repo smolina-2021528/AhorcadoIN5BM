@@ -66,33 +66,36 @@ h1 {
 }
 
 .teclado {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    gap: 8px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 10px;
 }
 
 .tecla {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    background-color: #fff;
-    transition: all 0.2s ease;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #66b3ff;
+  color: white;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .tecla:hover:enabled {
-    background-color: #ddd;
+  background-color: #3399ff;
+  transform: scale(1.15);
 }
 
 .tecla:disabled {
-    background-color: #eee;
-    cursor: not-allowed;
-    color: #999;
+  background-color: #b3d9ff;
+  cursor: not-allowed;
+  color: #555;
 }
 
 .acierto {

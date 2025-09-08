@@ -3,14 +3,12 @@ package controlador;
 import config.Conexion;
 import modelo.Usuario;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet("/Validar")
+@WebServlet(name = "Validar", urlPatterns = {"/Validar"})
 public class Validar extends HttpServlet {
 
     @Override
@@ -23,10 +21,8 @@ public class Validar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setCharacterEncoding("UTF-8");
         String accion = request.getParameter("accion");
-
-        if (accion != null && "Ingresar".equalsIgnoreCase(accion)) {
+        if ("Ingresar".equalsIgnoreCase(accion)) {
             String nombre = request.getParameter("txtCorreo");
             String pass   = request.getParameter("txtPassword");
 
@@ -36,14 +32,13 @@ public class Validar extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("codigoUsuario", usuario.getCodigoUsuario());
                 session.setAttribute("nombreUsuario", usuario.getNombreUsuario());
-
-                request.getRequestDispatcher("ahorcado.jsp").forward(request, response);
+    request.getRequestDispatcher("Index/ahorcado.jsp").forward(request, response);
             } else {
                 request.setAttribute("error", "Usuario o contraseña incorrectos");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher("Index/ahorcado.jsp").forward(request, response);
             }
         } else {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("Index/ahorcado.jsp").forward(request, response);
         }
     }
 
@@ -52,31 +47,23 @@ public class Validar extends HttpServlet {
         String sql = "SELECT codigoUsuario, nombreUsuario, contraseñaUsuario " +
                      "FROM Usuarios WHERE nombreUsuario = ? AND contraseñaUsuario = ?";
 
+        try (Connection con = new Conexion().Conexion();
+             PreparedStatement ps = con != null ? con.prepareStatement(sql) : null) {
 
-        try (Connection con = new Conexion().Conexion()) {
+            if (ps == null) return null;
 
-            if (con == null) {
+            ps.setString(1, nombre);
+            ps.setString(2, contrasena);
 
-                System.err.println("Validar: la conexión a la base de datos es nula.");
-                return null;
-            }
-
-            try (PreparedStatement ps = con.prepareStatement(sql)) {
-                ps.setString(1, nombre);
-                ps.setString(2, contrasena);
-
-                try (ResultSet rs = ps.executeQuery()) {
-                    if (rs.next()) {
-                        usuario = new Usuario();
-                        usuario.setCodigoUsuario(rs.getInt("codigoUsuario"));
-                        usuario.setNombreUsuario(rs.getString("nombreUsuario"));
-                        usuario.setContraseñaUsuario(rs.getString("contraseñaUsuario"));
-                    }
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    usuario = new Usuario();
+                    usuario.setCodigoUsuario(rs.getInt("codigoUsuario"));
+                    usuario.setNombreUsuario(rs.getString("nombreUsuario"));
+                    usuario.setContraseñaUsuario(rs.getString("contraseñaUsuario"));
                 }
             }
-
         } catch (Exception e) {
-            
             e.printStackTrace();
         }
         return usuario;

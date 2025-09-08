@@ -15,7 +15,7 @@
 <body>
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
-        <form action="${pageContext.request.contextPath}/Validar" method="post">
+        <form action="Validar" method="post">
     <input type="text" name="txtCorreo" placeholder="Usuario" required>
     <input type="password" name="txtPassword" placeholder="Contraseña" required>
     <button type="submit" name="accion" value="Ingresar">Login</button>

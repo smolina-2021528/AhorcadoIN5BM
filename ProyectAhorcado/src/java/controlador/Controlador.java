@@ -54,7 +54,7 @@ public class Controlador extends HttpServlet {
             } else if ("CerrarSesion".equals(accion)) {
                 HttpSession session = request.getSession();
                 session.invalidate();
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher("Index/ahorcado.jsp").forward(request, response);
             }
         }
 
@@ -80,7 +80,7 @@ public class Controlador extends HttpServlet {
         }
 
         else {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("Index/ahorcado.jsp").forward(request, response);
         }
     }
 

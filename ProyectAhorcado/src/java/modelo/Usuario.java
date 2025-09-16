@@ -1,40 +1,42 @@
 package modelo;
 
 public class Usuario {
-    private int codigoUsuario;
-    private String nombreUsuario;
-    private String contraseñaUsuario;
+    private int codigo_usuario;
+    private String nombre_usuario;
+    private String contraseña_usuario;
 
     public Usuario() {}
 
     public Usuario(int codigoUsuario, String nombreUsuario, String contraseñaUsuario) {
-        this.codigoUsuario = codigoUsuario;
-        this.nombreUsuario = nombreUsuario;
-        this.contraseñaUsuario = contraseñaUsuario;
+        this.codigo_usuario = codigoUsuario;
+        this.nombre_usuario = nombreUsuario;
+        this.contraseña_usuario = contraseñaUsuario;
     }
 
-    public int getCodigoUsuario() {
-        return codigoUsuario;
+    public int getCodigo_usuario() {
+        return codigo_usuario;
     }
 
-    public void setCodigoUsuario(int codigoUsuario) {
-        this.codigoUsuario = codigoUsuario;
+    public void setCodigo_usuario(int codigo_usuario) {
+        this.codigo_usuario = codigo_usuario;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getNombre_usuario() {
+        return nombre_usuario;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setNombre_usuario(String nombre_usuario) {
+        this.nombre_usuario = nombre_usuario;
     }
 
-    public String getContraseñaUsuario() {
-        return contraseñaUsuario;
+    public String getContraseña_usuario() {
+        return contraseña_usuario;
     }
 
-    public void setContraseñaUsuario(String contraseñaUsuario) {
-        this.contraseñaUsuario = contraseñaUsuario;
+    public void setContraseña_usuario(String contraseña_usuario) {
+        this.contraseña_usuario = contraseña_usuario;
     }
+
+   
 }
 

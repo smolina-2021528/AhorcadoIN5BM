@@ -3,34 +3,34 @@ create database DB_Ahorcado;
 use DB_Ahorcado;
 
 Create table Usuarios ( 
-codigoUsuario int auto_increment, 
-nombreUsuario varchar(32) unique, 
-contraseñaUsuario varchar (32), 
-constraint pk_codigoUsuario primary key (codigoUsuario) ); 
+codigo_usuario int auto_increment, 
+nombre_usuario varchar(32) unique, 
+contraseña_usuario varchar (32), 
+constraint pk_codigoUsuario primary key (codigo_usuario)); 
 
 Create table Palabras ( 
-codigoPalabra int auto_increment, 
-textoPalabra varchar(20) unique, 
-constraint pk_codigoPalabra primary key (codigoPalabra) );
+codigo_palabra int auto_increment, 
+texto_palabra varchar(20) unique, 
+constraint pk_codigoPalabra primary key (codigo_palabra) );
 
  Delimiter $$
  Create procedure sp_AgregarUsuario ( 
  in nomUsu varchar(32), 
  in contUsu varchar (32)) 
  begin
- insert into Usuarios (nombreUsuario, contraseñaUsuario) 
+ insert into Usuarios (nombre_usuario, contraseña_usuario) 
  values (nomUsu, contUsu);
  end$$ 
  Delimiter ; 
  
- call sp_AgregarUsuario("joaquin gonzales", "jocaco7852$"); 
- call sp_AgregarUsuario("diego mendez", "diegoLuhe980"); 
- call sp_AgregarUsuario("pablo santa cruz", "sdjfjf4141"); 
+ call sp_AgregarUsuario("joaquingonzales", "jocaco7852"); 
+ call sp_AgregarUsuario("diegomendez", "diegoLuhe980"); 
+ call sp_AgregarUsuario("pablosanta cruz", "sdjfjf4141"); 
  
 Delimiter $$
 Create procedure sp_AgregarPalabra (in texto varchar (32))
 begin
-	insert into Palabras (textoPalabra)
+	insert into Palabras (texto_palabra)
 		values (texto);
 end $$
 Delimiter ;
@@ -52,6 +52,7 @@ Delimiter ;
  call sp_AgregarPalabra ("COMPORTAMIENTO"); 
  call sp_AgregarPalabra ("PROFESOR"); 
  call sp_AgregarPalabra ("PASAJERO"); 
+ /*
  call sp_AgregarPalabra ("TRANSMITIR"); 
  call sp_AgregarPalabra ("REALMADRID");
  call sp_AgregarPalabra ("AGRADABLE"); 
@@ -74,6 +75,7 @@ Delimiter ;
  call sp_AgregarPalabra ("SABIENDO"); 
  call sp_AgregarPalabra ("REBOBINAR"); 
  call sp_AgregarPalabra ("DESCOLORIDO");
+ */
  
  Delimiter $$
 Create procedure sp_ValidarUsuario(
@@ -82,8 +84,8 @@ Create procedure sp_ValidarUsuario(
 )
 begin
     select * from Usuarios
-    where nombreUsuario = nomUsu
-    and contraseñaUsuario = contUsu;
+    where nombre_usuario = nomUsu
+    and contraseña_usuario = contUsu;
 end$$
 Delimiter ;
 

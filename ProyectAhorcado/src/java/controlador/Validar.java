@@ -30,8 +30,8 @@ public class Validar extends HttpServlet {
 
             if (usuario != null) {
                 HttpSession session = request.getSession();
-                session.setAttribute("codigoUsuario", usuario.getCodigoUsuario());
-                session.setAttribute("nombreUsuario", usuario.getNombreUsuario());
+                session.setAttribute("codigo_usuario", usuario.getCodigo_usuario());
+                session.setAttribute("nombre_usuario", usuario.getNombre_usuario());
     request.getRequestDispatcher("Index/ahorcado.jsp").forward(request, response);
             } else {
                 request.setAttribute("error", "Usuario o contraseña incorrectos");
@@ -44,8 +44,8 @@ public class Validar extends HttpServlet {
 
     private Usuario validarUsuario(String nombre, String contrasena) {
         Usuario usuario = null;
-        String sql = "SELECT codigoUsuario, nombreUsuario, contraseñaUsuario " +
-                     "FROM Usuarios WHERE nombreUsuario = ? AND contraseñaUsuario = ?";
+        String sql = "SELECT codigo_usuario, nombre_usuario, contraseña_usuario " +
+                     "FROM Usuarios WHERE nombre_usuario = ? AND contraseña_usuario = ?";
 
         try (Connection con = new Conexion().Conexion();
              PreparedStatement ps = con != null ? con.prepareStatement(sql) : null) {
@@ -58,9 +58,9 @@ public class Validar extends HttpServlet {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     usuario = new Usuario();
-                    usuario.setCodigoUsuario(rs.getInt("codigoUsuario"));
-                    usuario.setNombreUsuario(rs.getString("nombreUsuario"));
-                    usuario.setContraseñaUsuario(rs.getString("contraseñaUsuario"));
+                    usuario.setCodigo_usuario(rs.getInt("codigo_usuario"));
+                    usuario.setNombre_usuario(rs.getString("nombre_usuario"));
+                    usuario.setContraseña_usuario(rs.getString("contraseña_usuario"));
                 }
             }
         } catch (Exception e) {

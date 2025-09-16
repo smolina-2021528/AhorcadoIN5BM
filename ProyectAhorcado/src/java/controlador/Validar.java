@@ -18,29 +18,28 @@ public class Validar extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    String accion = request.getParameter("accion");
+    if ("Ingresar".equalsIgnoreCase(accion)) {
+        String name = request.getParameter("txtCorreo");
+        String pass = request.getParameter("txtPassword");
 
-        String accion = request.getParameter("accion");
-        if ("Ingresar".equalsIgnoreCase(accion)) {
-            String name = request.getParameter("txtCorreo");
-            String pass   = request.getParameter("txtPassword");
+        User user = validarUsuario(name, pass);
 
-            User user = validarUsuario(name, pass);
-
-            if (user != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("user_code", user.getUser_code());
-                session.setAttribute("user_name", user.getUser_name());
-    request.getRequestDispatcher("Index/ahorcado.jsp").forward(request, response);
-            } else {
-                request.setAttribute("error", "Usuario o contraseña incorrectos");
-                request.getRequestDispatcher("Index/ahorcado.jsp").forward(request, response);
-            }
-        } else {
+        if (user != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("user_code", user.getUser_code());
+            session.setAttribute("user_name", user.getUser_name());
             request.getRequestDispatcher("Index/ahorcado.jsp").forward(request, response);
+        } else {
+            request.setAttribute("error", "Usuario o contraseña incorrectos");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+    } else {
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
+}
 
     private User validarUsuario(String name, String contrasena) {
         User user = null;

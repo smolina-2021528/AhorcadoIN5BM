@@ -18,7 +18,7 @@
         <% if (request.getAttribute("error") != null) { %>
             <p style="color: red;"><%= request.getAttribute("error") %></p>
         <% } %>
-        <form action="Validar" method="post">
+        <form action="./Validar" method="post">
     <input type="text" name="txtCorreo" placeholder="Usuario" required>
     <input type="password" name="txtPassword" placeholder="Contraseña" required>
     <button type="submit" name="accion" value="Ingresar">Login</button>

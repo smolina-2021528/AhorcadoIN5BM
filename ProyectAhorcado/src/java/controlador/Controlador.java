@@ -69,7 +69,7 @@ public class Controlador extends HttpServlet {
                     ResultSet rs = stmt.executeQuery();
 
                     if (rs.next()) {
-                        out.print(rs.getString("textoPalabra"));
+                        out.print(rs.getString("word_text"));
                     } else {
                         out.print("ERROR");
                     }

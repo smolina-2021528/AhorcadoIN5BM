@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <!-- titulo de la pagina (el del navegador) -->
     <title>Juego del Ahorcado</title>
-    <link rel="stylesheet" href="css/Styles.css">
+    <link rel="stylesheet" href="./css/Styles.css">
 </head>
 <body>
     <!-- titulo de la pagina, la vista   -->
@@ -21,7 +21,7 @@
     <!--  contenedor para la imagen-->
     <div class="contenedor-img">
         <!--  en este img, se maneja la imagen que cambia, por eso el id ahorcado-img, por defecto carga error0 -->
-        <img id="ahorcado-img" src="Image/error0.png" alt="Ahorcado">
+        <img id="ahorcado-img" src="./Image/error0.png" alt="Ahorcado">
     </div>
 
      <!-- division donde se colocara el tablero, ya sean guiones o letras-->
@@ -38,6 +38,6 @@
         <button onclick="iniciarJuego()" class="btnReiniciar">Reiniciar Juego</button>
     </div>
 
-    <script src="Script/script.js"></script>
+    <script src="./Script/script.js"></script>
 </body>
 </html>

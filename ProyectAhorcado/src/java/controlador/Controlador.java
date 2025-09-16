@@ -28,20 +28,20 @@ public class Controlador extends HttpServlet {
 
         if ("Login".equals(menu)) {
             if ("Ingresar".equals(accion)) {
-                String usuario = request.getParameter("txtCorreo");
+                String user = request.getParameter("txtCorreo");
                 String password = request.getParameter("txtPassword");
 
                 try {
                     con = cn.Conexion();
-                    CallableStatement stmt = con.prepareCall("{call sp_ValidarUsuario(?,?)}");
-                    stmt.setString(1, usuario);
+                    CallableStatement stmt = con.prepareCall("{call sp_ValidateUser(?,?)}");
+                    stmt.setString(1, user);
                     stmt.setString(2, password);
 
                     ResultSet rs = stmt.executeQuery();
 
                     if (rs.next()) {
                         HttpSession session = request.getSession();
-                        session.setAttribute("usuarioLogueado", usuario);
+                        session.setAttribute("usuarioLogueado", user);
                         request.getRequestDispatcher("ahorcado.jsp").forward(request, response);
                     } else {
                         request.setAttribute("error", "Usuario o contraseña incorrectos");
@@ -65,7 +65,7 @@ public class Controlador extends HttpServlet {
 
                 try (PrintWriter out = response.getWriter()) {
                     con = cn.Conexion();
-                    CallableStatement stmt = con.prepareCall("{call sp_ObtenerPalabraAleatoria()}");
+                    CallableStatement stmt = con.prepareCall("{call sp_RandomWord()}");
                     ResultSet rs = stmt.executeQuery();
 
                     if (rs.next()) {

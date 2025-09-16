@@ -1,7 +1,7 @@
 package controlador;
 
 import config.Conexion;
-import modelo.Usuario;
+import modelo.User;
 import java.io.IOException;
 import java.sql.*;
 import javax.servlet.ServletException;
@@ -23,15 +23,15 @@ public class Validar extends HttpServlet {
 
         String accion = request.getParameter("accion");
         if ("Ingresar".equalsIgnoreCase(accion)) {
-            String nombre = request.getParameter("txtCorreo");
+            String name = request.getParameter("txtCorreo");
             String pass   = request.getParameter("txtPassword");
 
-            Usuario usuario = validarUsuario(nombre, pass);
+            User user = validarUsuario(name, pass);
 
-            if (usuario != null) {
+            if (user != null) {
                 HttpSession session = request.getSession();
-                session.setAttribute("codigo_usuario", usuario.getCodigo_usuario());
-                session.setAttribute("nombre_usuario", usuario.getNombre_usuario());
+                session.setAttribute("user_code", user.getUser_code());
+                session.setAttribute("user_name", user.getUser_name());
     request.getRequestDispatcher("Index/ahorcado.jsp").forward(request, response);
             } else {
                 request.setAttribute("error", "Usuario o contraseña incorrectos");
@@ -42,30 +42,30 @@ public class Validar extends HttpServlet {
         }
     }
 
-    private Usuario validarUsuario(String nombre, String contrasena) {
-        Usuario usuario = null;
-        String sql = "SELECT codigo_usuario, nombre_usuario, contraseña_usuario " +
-                     "FROM Usuarios WHERE nombre_usuario = ? AND contraseña_usuario = ?";
+    private User validarUsuario(String name, String contrasena) {
+        User user = null;
+        String sql = "SELECT user_code, user_name, user_password " +
+                     "FROM Users WHERE user_name = ? AND user_password = ?";
 
         try (Connection con = new Conexion().Conexion();
              PreparedStatement ps = con != null ? con.prepareStatement(sql) : null) {
 
             if (ps == null) return null;
 
-            ps.setString(1, nombre);
+            ps.setString(1, name);
             ps.setString(2, contrasena);
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    usuario = new Usuario();
-                    usuario.setCodigo_usuario(rs.getInt("codigo_usuario"));
-                    usuario.setNombre_usuario(rs.getString("nombre_usuario"));
-                    usuario.setContraseña_usuario(rs.getString("contraseña_usuario"));
+                    user = new User();
+                    user.setUser_code(rs.getInt("user_code"));
+                    user.setUser_name(rs.getString("user_name"));
+                    user.setUser_password(rs.getString("user_password"));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return usuario;
+        return user;
     }
 }

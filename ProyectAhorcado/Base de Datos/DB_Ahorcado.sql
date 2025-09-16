@@ -2,98 +2,100 @@ drop database if exists DB_Ahorcado;
 create database DB_Ahorcado;
 use DB_Ahorcado;
 
-Create table Usuarios ( 
-codigo_usuario int auto_increment, 
-nombre_usuario varchar(32) unique, 
-contraseña_usuario varchar (32), 
-constraint pk_codigoUsuario primary key (codigo_usuario)); 
+Create table Users ( 
+user_code int auto_increment, 
+user_name varchar(32) unique, 
+user_password varchar (32), 
+constraint pk_user_code primary key (user_code)); 
 
-Create table Palabras ( 
-codigo_palabra int auto_increment, 
-texto_palabra varchar(20) unique, 
-constraint pk_codigoPalabra primary key (codigo_palabra) );
+Create table Words ( 
+word_code int auto_increment, 
+word_text varchar(20) unique, 
+constraint pk_word_code primary key (word_code));
 
  Delimiter $$
- Create procedure sp_AgregarUsuario ( 
- in nomUsu varchar(32), 
- in contUsu varchar (32)) 
- begin
- insert into Usuarios (nombre_usuario, contraseña_usuario) 
- values (nomUsu, contUsu);
- end$$ 
+ Create procedure sp_AddUser ( 
+	in usnam varchar(32), 
+	in uspass varchar (32)) 
+	begin
+		 insert into Users (user_name, user_password) 
+			values (usnam, uspass);
+	end$$ 
  Delimiter ; 
  
- call sp_AgregarUsuario("joaquingonzales", "jocaco7852"); 
- call sp_AgregarUsuario("diegomendez", "diegoLuhe980"); 
- call sp_AgregarUsuario("pablosanta cruz", "sdjfjf4141"); 
+ call sp_AddUser("joaquingonzales", "jocaco7852"); 
+ call sp_AddUser("diegomendez", "diegoLuhe980"); 
+ call sp_AddUser("pablosanta cruz", "sdjfjf4141"); 
  
 Delimiter $$
-Create procedure sp_AgregarPalabra (in texto varchar (32))
+Create procedure sp_AddWord (in wtext varchar (32))
 begin
-	insert into Palabras (texto_palabra)
-		values (texto);
+	insert into Words (word_text)
+		values (wtext);
 end $$
 Delimiter ;
  
- call sp_AgregarPalabra ("CENICIENTA");
- call sp_AgregarPalabra ("ANIMALISTA");
- call sp_AgregarPalabra ("OBSTACULO"); 
- call sp_AgregarPalabra ("DESBORDAR"); 
- call sp_AgregarPalabra ("CARRUAJE"); 
- call sp_AgregarPalabra ("DESAGRADABLE"); 
- call sp_AgregarPalabra ("DEPENDER"); 
- call sp_AgregarPalabra ("CUALQUIER"); 
- call sp_AgregarPalabra ("ESCUCHAR"); 
- call sp_AgregarPalabra ("IRREGULAR"); 
- call sp_AgregarPalabra ("CONVERTIRSE"); 
- call sp_AgregarPalabra ("BRUTALMENTE");
- call sp_AgregarPalabra ("EDUCACION"); 
- call sp_AgregarPalabra ("CEPILLARSE"); 
- call sp_AgregarPalabra ("COMPORTAMIENTO"); 
- call sp_AgregarPalabra ("PROFESOR"); 
- call sp_AgregarPalabra ("PASAJERO"); 
+ call sp_AddWord ("CENICIENTA");
+ call sp_AddWord ("ANIMALISTA");
+ call sp_AddWord ("OBSTACULO"); 
+ call sp_AddWord ("DESBORDAR"); 
+ call sp_AddWord ("CARRUAJE"); 
+ call sp_AddWord ("DESAGRADABLE"); 
+ call sp_AddWord ("DEPENDER"); 
+ call sp_AddWord ("CUALQUIER"); 
+ call sp_AddWord ("ESCUCHAR"); 
+ call sp_AddWord ("IRREGULAR"); 
+ call sp_AddWord ("CONVERTIRSE"); 
+ call sp_AddWord ("BRUTALMENTE");
+ call sp_AddWord ("EDUCACION"); 
+ call sp_AddWord ("CEPILLARSE"); 
+ call sp_AddWord ("COMPORTAMIENTO"); 
+ call sp_AddWord ("PROFESOR"); 
+ call sp_AddWord ("PASAJERO"); 
  /*
- call sp_AgregarPalabra ("TRANSMITIR"); 
- call sp_AgregarPalabra ("REALMADRID");
- call sp_AgregarPalabra ("AGRADABLE"); 
- call sp_AgregarPalabra ("DESPIERTO"); 
- call sp_AgregarPalabra ("ILUMINADO"); 
- call sp_AgregarPalabra ("SURREALISTA");
- call sp_AgregarPalabra ("COMANDOS"); 
- call sp_AgregarPalabra ("ATROCIDADES"); 
- call sp_AgregarPalabra ("IMPLICAR");
- call sp_AgregarPalabra ("AFICIONES");
- call sp_AgregarPalabra ("TECNOLOGIA");
- call sp_AgregarPalabra ("PRESENTACION"); 
- call sp_AgregarPalabra ("COMBATIENTE");
- call sp_AgregarPalabra ("INTERCAMBIAR");
- call sp_AgregarPalabra ("BARBILLA");
- call sp_AgregarPalabra ("REPRODUCTOR"); 
- call sp_AgregarPalabra ("LIQUIDOS");
- call sp_AgregarPalabra ("MISERABLE"); 
- call sp_AgregarPalabra ("NUMEROSO"); 
- call sp_AgregarPalabra ("SABIENDO"); 
- call sp_AgregarPalabra ("REBOBINAR"); 
- call sp_AgregarPalabra ("DESCOLORIDO");
+ call sp_AddWord ("TRANSMITIR"); 
+ call sp_AddWord ("REALMADRID");
+ call sp_AddWord ("AGRADABLE"); 
+ call sp_AddWord ("DESPIERTO"); 
+ call sp_AddWord ("ILUMINADO"); 
+ call sp_AddWord ("SURREALISTA");
+ call sp_AddWord ("COMANDOS"); 
+ call sp_AddWord ("ATROCIDADES"); 
+ call sp_AddWord ("IMPLICAR");
+ call sp_AddWord ("AFICIONES");
+ call sp_AddWord ("TECNOLOGIA");
+ call sp_AddWord ("PRESENTACION"); 
+ call sp_AddWord ("COMBATIENTE");
+ call sp_AddWord ("INTERCAMBIAR");
+ call sp_AddWord ("BARBILLA");
+ call sp_AddWord ("REPRODUCTOR"); 
+ call sp_AddWord ("LIQUIDOS");
+ call sp_AddWord ("MISERABLE"); 
+ call sp_AddWord ("NUMEROSO"); 
+ call sp_AddWord ("SABIENDO"); 
+ call sp_AddWord ("REBOBINAR"); 
+ call sp_AddWord ("DESCOLORIDO");
  */
  
  Delimiter $$
-Create procedure sp_ValidarUsuario(
-    in nomUsu varchar(32),
-    in contUsu varchar(32)
+Create procedure sp_ValidateUser(
+    in usnam varchar(32),
+    in uspass varchar(32)
 )
 begin
-    select * from Usuarios
-    where nombre_usuario = nomUsu
-    and contraseña_usuario = contUsu;
+    select * from Users
+    where user_name = usnam
+    and user_password = uspass;
 end$$
 Delimiter ;
 
 Delimiter $$
-Create procedure sp_ObtenerPalabraAleatoria()
+Create procedure sp_RandomWord()
 begin
-    select textoPalabra from Palabras
+    select word_text from Words
     order by rand()
     limit 1;
 end$$
 Delimiter ;
+
+call sp_RandomWord();

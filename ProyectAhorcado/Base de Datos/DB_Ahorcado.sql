@@ -99,3 +99,5 @@ end$$
 Delimiter ;
 
 call sp_RandomWord();
+select * from Users;
+select * from Words;
